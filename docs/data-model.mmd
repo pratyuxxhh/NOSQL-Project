@@ -1,0 +1,44 @@
+flowchart LR
+    %% Source for docs/data-model.svg. Regenerate with:
+    %% docker run --rm -v "$PWD/docs:/data" minlag/mermaid-cli -i data-model.mmd -o data-model.svg -b white
+
+    User([User])
+    Account([Account])
+    Other([Account])
+    Device([Device])
+    Card([Card])
+    Address([Address])
+    Phone([Phone])
+    Merchant([Merchant])
+    Transaction([Transaction])
+    FraudFlag([FraudFlag])
+    Analyst([Analyst])
+    Ring([Ring])
+    Alert([Alert])
+
+    User -- OWNS --> Account
+    User -- LIVES_AT --> Address
+    User -- HAS_PHONE --> Phone
+    Account -- USES_DEVICE --> Device
+    Account -- USES_CARD --> Card
+    Account -- INITIATED --> Transaction
+    Transaction -- PAID_TO --> Merchant
+    Account -- TRANSACTED_WITH --> Merchant
+
+    Account == "SHARED_DEVICE<br/>SHARED_CARD<br/>SHARED_ADDRESS<br/>SHARED_PHONE<br/>TRANSACTED_WITH" === Other
+
+    Account -- FLAGGED_BY --> FraudFlag
+    Account -- FLAGGED_BY --> Analyst
+    Transaction -- FLAGGED_BY --> FraudFlag
+    Account -- MEMBER_OF --> Ring
+    Alert -- ABOUT --> Account
+    Alert -- ASSIGNED_TO --> Analyst
+
+    classDef entity fill:#dbeafe,stroke:#1d4ed8,color:#0f172a
+    classDef attribute fill:#fef3c7,stroke:#b45309,color:#0f172a
+    classDef activity fill:#dcfce7,stroke:#15803d,color:#0f172a
+    classDef fraud fill:#fee2e2,stroke:#b91c1c,color:#0f172a
+    class User,Account,Other entity
+    class Device,Card,Address,Phone attribute
+    class Merchant,Transaction activity
+    class FraudFlag,Analyst,Ring,Alert fraud

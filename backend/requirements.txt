@@ -1,0 +1,13 @@
+fastapi~=0.115.0
+uvicorn[standard]~=0.32.0
+neo4j~=5.27
+pydantic~=2.10
+pydantic-settings~=2.6
+faker~=33.0
+bcrypt~=4.2
+PyJWT~=2.10
+slowapi~=0.1.9
+PyYAML~=6.0
+httpx~=0.28
+psycopg[binary]~=3.2
+matplotlib~=3.9

@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* Dark mode follows a `dark` class on <html> (toggle in the header, OS setting by default). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+body {
+  @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100;
+}

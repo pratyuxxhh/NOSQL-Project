@@ -1,0 +1,18 @@
+# Baseline per-transaction rules: the "existing methodology" FraudMesh is compared against.
+# Each rule judges ONE transaction in isolation. Points add up and are capped at 100.
+# These are the defaults; admins can change them at runtime on the Admin page.
+
+high_amount_threshold: 50000      # INR
+high_amount_points: 40
+
+velocity_max: 5                   # more than this many transactions ...
+velocity_window_minutes: 10       # ... by one account within this window
+velocity_points: 30
+
+new_device_points: 15             # first time this account uses this device
+
+unusual_location_points: 25       # transaction location outside India
+
+high_risk_merchant_points: 30     # merchant risk tier HIGH (gift cards, crypto, gambling, money transfer)
+
+flag_threshold: 60                # rule_score >= this raises a HIGH_RULE_SCORE alert and counts as "caught by rules"
